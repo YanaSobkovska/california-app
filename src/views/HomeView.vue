@@ -1,15 +1,16 @@
-<template>
-  <div class="home">
-    123
-  </div>
-</template>
-
 <script>
+import Banner from '@/components/Banner.vue';
 
 export default {
-  name: 'HomeView',
+  name: 'Home',
   components: {
-    
-  }
+  Banner
+}
 }
 </script>
+
+<template>
+<div class="container">
+<Banner/>
+</div>
+</template>
