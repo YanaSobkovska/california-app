@@ -22,47 +22,55 @@ export default {
 </script>
 
 <template>
-	<nav
-		class="navigation d-flex flex-column flex-md-row align-center justify-lg-center justify-md-center"
-		cols="5"
-	>
-		<div
-			v-for="(item, index) in navigationItems"
-			:key="index"
-			class="navigation-item"
+	<div class="container">
+		<nav
+			class="navigation d-flex flex-column flex-md-row align-center justify-lg-center justify-md-center"
+			cols="5"
 		>
-			<div v-if="!item.dropdownItems">
-				<a href="">{{ item.title }}</a>
+			<div
+				v-for="(item, index) in navigationItems"
+				:key="index"
+				class="navigation-item btn"
+			>
+				<div v-if="!item.dropdownItems">
+					<a href="">{{ item.title }}</a>
+				</div>
+				<div v-else class="item-dropdown">
+					<v-menu
+						open-on-hover
+						bottom
+						offset-y
+						origin="center center"
+						transition="scale-transition"
+					>
+						<template v-slot:activator="{ on, attrs }">
+							<div v-bind="attrs" v-on="on">
+								<a href="">{{ item.title }}</a>
+								<img
+									class="solutions-icon"
+									src="../assets/icon/arrow_bottom.svg"
+									alt="arrow bottom"
+								/>
+							</div>
+						</template>
+						<v-list class="dropdown">
+							<v-list-item
+								v-for="(el, index) in item.dropdownItems"
+								:key="index"
+							>
+								<v-list-item-title
+									class="dropdown-item cursor-p"
+									@click="$router.push(el.path)"
+								>
+									{{ el.title }}
+								</v-list-item-title>
+							</v-list-item>
+						</v-list>
+					</v-menu>
+				</div>
 			</div>
-			<div v-else class="item-dropdown">
-				<v-menu
-					open-on-hover
-					bottom
-					offset-y
-					origin="center center"
-					transition="scale-transition"
-				>
-					<template v-slot:activator="{ on, attrs }">
-						<div v-bind="attrs" v-on="on">
-							<a href="">{{ item.title }}</a>
-							<img
-								class="solutions-icon"
-								src="../assets/icon/arrow_bottom.svg"
-								alt="arrow bottom"
-							/>
-						</div>
-					</template>
-					<v-list class="dropdown">
-						<v-list-item v-for="(el, index) in item.dropdownItems" :key="index">
-							<v-list-item-title class="dropdown-item cursor-p" @click="$router.push(el.path)">
-								{{ el.title }}
-							</v-list-item-title>
-						</v-list-item>
-					</v-list>
-				</v-menu>
-			</div>
-		</div>
-	</nav>
+		</nav>
+	</div>
 </template>
 
 <style lang="scss" scoped>

@@ -1,16 +1,17 @@
 <script>
-import Banner from '@/components/Banner.vue';
+import Carousel from '@/components/Carousel.vue';
 
 export default {
   name: 'Home',
   components: {
-  Banner
+  Carousel
 }
 }
 </script>
 
 <template>
 <div class="container">
+  <Carousel/>
 <Banner/>
 </div>
 </template>

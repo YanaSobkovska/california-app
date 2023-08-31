@@ -1,13 +1,11 @@
 <template>
 	<v-app>
-		<div class="">
 			<header>
 				<HeaderComponent />
 			</header>
 			<v-main>
 				<router-view />
 			</v-main>
-		</div>
 	</v-app>
 </template>
 
